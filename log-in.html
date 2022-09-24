@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/css/styles.css" />
+    <script src="/scritpt/toggle_login.mjs" type="module" defer></script>
+    <script src="/scritpt/login_register.mjs" type="module" defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary ">
+      <div class="container">
+        <form class="form-inline mx-2">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            required
+          />
+        </form>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="img/logo.png" /></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="log-in.html">Log in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="text-center">
+            <h1 class="display-1 fw-bold">Rubber <span class="d-block">Duc<span><img src="img/Duck_K.png" style="width: 150px"></span>ies</span></h1>
+        </div>
+        <div class="form-group text-center py-5 container-sm" id="login" style="max-width: 600px;">
+            <form>
+                <div class="mb-3">
+                  <label for="email-log-in" class="form-label display-6">Email</label>
+                  <input type="email" class="form-control" id="email-log-in" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password-log-in" class="form-label display-6">Password</label>
+                  <input type="password" class="form-control" id="password-log-in" required>
+                </div>
+                <button type="submit" class="btn btn-primary my-4 px-5"><span class="fw-bold ">Log in</span></button>
+              </form>
+              <span class="other-log-feature" id="register-button">Register</span>
+        </div>
+
+        <div class="form-group text-center py-5 container-sm" id="register" style="max-width: 600px; display: none;">
+          <form>
+              <div class="mb-3">
+                <label for="email-register" class="form-label display-6">Email</label>
+                <input type="email" class="form-control" id="email-register" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                <label for="username-register" class="form-label display-6">Username</label>
+                <input type="text" class="form-control" id="username-register" required>
+              </div>
+              <div class="mb-3">
+                <label for="password-register" class="form-label display-6">Password</label>
+                <input type="password" class="form-control" id="password-register" required>
+              </div>
+              <div class="mb-3">
+                <label for="password-register-confirm" class="form-label display-6">Repeat password</label>
+                <input type="password" class="form-control" id="password-register-confirm" required>
+              </div>
+              <button type="submit" class="btn btn-primary my-4 px-5"><span class="fw-bold ">Log in</span></button>
+            </form>
+            <span class="other-log-feature" id="login-button">login</span>
+      </div>
+      </div>
+    </div>
+
+    <div class="bg-primary p-3 mt-auto" style="color: #fefefe">
+      <p class="text-center">Created by Daniel Sollid</p>
+    </div>
+  </body>
+</html>
