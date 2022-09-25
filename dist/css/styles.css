@@ -10774,3 +10774,7 @@ textarea.form-control-lg {
 .no_underline{
   text-decoration: none;
 }
+
+.individual-post{
+  min-height: 100vh;
+}

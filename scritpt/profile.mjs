@@ -22,8 +22,8 @@ async function lookAtProfile() {
     }
     const response = await fetch(`${baseURL}social/profiles/${username}?_posts=true`, options)
     const data = await response.json();
-    console.log(data)
     createProfilePosts(data);
+    console.log(data);
 }
 
 function createProfilePosts(data) {

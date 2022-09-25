@@ -28,7 +28,7 @@ function getPosts(post) {
         //destructuring the objects inside the array for readability and ease of use
         individualPost.innerHTML = 
         `
-        <div class="row pt-3 mt-4 border border-1 rounded-top">
+        <div class="row pt-3 mt-4 border border-1 shadow rounded-top">
         <div class="col-3 col-sm-2">
           <img src="img/logo.png" alt="user photo"/>
         </div>
