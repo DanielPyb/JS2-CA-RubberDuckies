@@ -1,4 +1,4 @@
-import { loginURL } from "./baseurl.mjs";
+import { baseURL, loginURL } from "./baseurl.mjs";
 
 const registerForm = document.getElementById("register");
 const loginForm = document.getElementById("login");
@@ -19,38 +19,51 @@ registerForm.addEventListener("submit", registerFunc)
 
 
 //log-in in function
-async function loginFunc(e){
+async function loginFunc(e) {
     e.preventDefault();
     //login object with values from the login fields ready to be parsed 
     const loginObject = {
-        email: loginEmail.value,
-        password: loginPassword.value
+        "email": loginEmail.value,
+        "password": loginPassword.value
     }
     const options = {
         method: "POST",
         headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjgyLCJuYW1lIjoiRGFuaWVsUHliIiwiZW1haWwiOiJkYW5pZWwuc29sbGlkQHN0dWQubm9yb2ZmLm5vIiwiYXZhdGFyIjoiaHR0cHM6Ly9pbWcuc2VydmljZS5jb20vYXZhdGFyLmpwZyIsImJhbm5lciI6Imh0dHBzOi8vaW1nLnNlcnZpY2UuY29tL2Jhbm5lci5qcGciLCJpYXQiOjE2NjQwMTA4MjJ9.tnH6FKjgiS1H4sNvcbNcNLP8G-U-D6DvWmxkw2r1g48',
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(loginObject)
     };
-    console.log(options.body);  
-    try {const response = await fetch(loginURL, options)
-    console.log(response)
-    return response.json();
-    } catch{
-        console.log(error)
+    try {
+        const response = await fetch(`${baseURL}social/auth/login`, options)
+        const result = await(response.json())
+        localStorage.setItem('accessToken', result.accessToken);
+        loginForm.innerHTML = "<p>hello and welcome to the site!</p>"
+    } catch {
+        console.log("something went wrong")
     }
 }
 
-function registerFunc(e){
+async function registerFunc(e) {
     e.preventDefault();
     const registerObject = {
         name: registerUsername.value,
         email: registerEmail.value,
         password: registerPassword.value,
     }
-    console.log(registerObject);
-
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(registerObject)
+    }
+    try {
+        const response = await fetch(`${baseURL}social/auth/register`, options)
+        const result = await(response.json());
+        console.log(result)
+    } catch {
+        console.log(error);
+    }
 }
 
 console.log(loginEmail);
