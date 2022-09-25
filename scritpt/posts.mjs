@@ -56,18 +56,18 @@ function getPosts(arr) {
         const {author: author, body: body, id: id} = post;
         createdPosts.innerHTML += 
         `
-        <a class="no_underline" href="post.html?id=${id}"><div class="row pt-3 mt-4 border border-1 rounded-top">
+        <div class="row pt-3 mt-4 border border-1 rounded-top">
         <div class="col-3 col-sm-2">
           <img src="img/logo.png" alt="user photo"/>
         </div>
         <div class="col-9 col-sm-10">
-          <h2 class="display-6">${author.name}</h2>
-          <p>
+          <h2 class="display-6"><a class="no_underline" href="profile.html?username=${author.name}">${author.name}</h2></a>
+          <p><a class="no_underline" href="post.html?id=${id}">
             ${body}
-          </p>
+          </p></a>
         </div>
         <div class="delete-post"><p>X</p></div>
-      </div></a>
+      </div>
         `
     });
 }

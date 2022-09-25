@@ -37,6 +37,7 @@ async function loginFunc(e) {
         const response = await fetch(`${baseURL}social/auth/login`, options)
         const result = await(response.json())
         localStorage.setItem('accessToken', result.accessToken);
+        localStorage.setItem('username', result.name);
         loginForm.innerHTML = "<p>hello and welcome to the site!</p>"
     } catch {
         console.log("something went wrong")
