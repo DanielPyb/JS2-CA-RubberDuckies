@@ -53,10 +53,10 @@ function getPosts(arr) {
     createdPosts.innerHTML = "";
     arr.forEach(post => {
         //destructuring the objects inside the array for readability and ease of use
-        const {author: author, body: body} = post;
+        const {author: author, body: body, id: id} = post;
         createdPosts.innerHTML += 
         `
-        <div class="row pt-3 mt-4 border border-1 rounded-top">
+        <a class="no_underline" href="post.html?id=${id}"><div class="row pt-3 mt-4 border border-1 rounded-top">
         <div class="col-3 col-sm-2">
           <img src="img/logo.png" alt="user photo"/>
         </div>
@@ -67,7 +67,7 @@ function getPosts(arr) {
           </p>
         </div>
         <div class="delete-post"><p>X</p></div>
-      </div>
+      </div></a>
         `
     });
 }
