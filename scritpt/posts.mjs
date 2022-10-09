@@ -1,5 +1,4 @@
 import { baseURL } from "./baseurl.mjs";
-import { deletePost } from "./apiCalls.mjs";
 
 console.log("hello")
 

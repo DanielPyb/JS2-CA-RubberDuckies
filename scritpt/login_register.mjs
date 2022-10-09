@@ -1,4 +1,5 @@
 import { baseURL, loginURL } from "./baseurl.mjs";
+import { validateEmail, validateUsername, validatePassword } from "./valdiation.mjs";
 
 const registerForm = document.getElementById("register");
 const loginForm = document.getElementById("login");
@@ -51,6 +52,7 @@ async function registerFunc(e) {
         email: registerEmail.value,
         password: registerPassword.value,
     }
+    if(validateUsername(registerUsername.value) && validateEmail(registerEmail.value) && validatePassword(registerPassword, reigsterPasswordConfirm)){
     const options = {
         method: "POST",
         headers: {
@@ -65,8 +67,12 @@ async function registerFunc(e) {
     } catch {
         console.log(error);
     }
+    } else{
+        console.log("something went wrong");
+    }
 }
 
 function logOut() {
     localStorage.removeItem("accessToken", "username");
 }
+

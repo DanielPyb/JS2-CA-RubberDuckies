@@ -1,5 +1,6 @@
 import { baseURL } from "./baseurl.mjs";
 import { deletePost, editPost } from "./apiCalls.mjs";
+const username = localStorage.getItem("username")
 
 const parameterString = window.location.search;
 const searchParams = new URLSearchParams(parameterString);
@@ -29,7 +30,7 @@ function getPosts(post) {
         //destructuring the objects inside the array for readability and ease of use
         individualPost.innerHTML = 
         `
-        <div class="row pt-3 mt-4 border border-1 shadow rounded-top">
+        <div class="row pt-3 mt-4 border border-1 shadow rounded-top content-info">
         <div class="col-3 col-sm-2">
           <img src="img/logo.png" alt="user photo"/>
         </div>
@@ -38,43 +39,52 @@ function getPosts(post) {
           <p class="post-text">
             ${post.body}
           </p>
-        </div>
-        <div class="row">
+        </div>`
+        if (username == post.author.name){
+          const contentInfo = document.querySelector(".content-info")
+          contentInfo.innerHTML +=
+          `<div class="row">
         <div class="delete-post col-3"><p>X</p></div>
         <div class="edit-post col-3"><p>Edit</p></div>
         </div>
       </div>
-      <div class="post-edit" style="display: none;">
+      <div class="post-edit" style="display: none; "width: 100%">
       <textarea></textarea>
-    </div>
-        `
+      </div>`
         const editPostBTN = individualPost.querySelector(".edit-post");
         editPostBTN.addEventListener("click", ()=>{
-          editPost(post.id);
+          editPostObject(post.id);
         });
         const deletePostBTN = individualPost.querySelector(".delete-post");
         deletePostBTN.addEventListener("click", ()=>{
           deletePost(post.id);
         });
+      } else{
+        console.log("not the original author")
+      }
 }
 
-export function editPostObject(){
+function editPostObject(id){
+
     const originalTextPost = individualPost.querySelector(".post-text")
+    console.log(originalTextPost.innerHTML);
     const postEditField = document.querySelector(".post-edit")
+    postEditField.style = "display:block"
     postEditField.innerHTML = "";
-    postEditField.innerHTML =`<textarea id="new-text">${originalTextPost}</textarea>
-                              <button>confirm</button>`
+    postEditField.innerHTML =`
+    <div class="row">
+    <textarea id="new-text" style="height: 200px">${originalTextPost.innerText}</textarea>
+                              <button>Update</button>
+                              </div>
+                              `
     const confirmBTN = postEditField.querySelector("button");
-    confirmBTN.addEventListener("click", confirmChange);
-}
-
-function confirmChange(){
+    confirmBTN.addEventListener("click", () => {
       const newTextField = postEditField.querySelector("#new-text")
       const newText = newTextField.value;
-      console.log(newText);
+      editPost(id, newText)
+      postEditField.style = "display:none"
+    });
 }
 
-
-console.log(singlePostArr);
 await getPosts(singlePostArr)
 

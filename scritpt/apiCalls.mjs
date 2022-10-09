@@ -1,14 +1,12 @@
 import { baseURL } from "./baseurl.mjs";
-import { editPostObject } from "./individualPost.mjs";
 
-export async function editPost(id) {
-    console.log("working before edit post obj function")
-    const editedText = editPostObject();
-  console.log("working after edit post obj function")
+export async function editPost(id, textValue) {
+  console.log("working before edit post obj function");
+  console.log("working after edit post obj function");
   const editObject = {
     title: "",
-    body: "hard coded new value",
-};
+    body: textValue,
+  };
   const options = {
     method: "PUT",
     headers: {

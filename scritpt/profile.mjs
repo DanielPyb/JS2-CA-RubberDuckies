@@ -43,7 +43,6 @@ function createProfilePosts(data) {
             ${body}
           </p></a>
         </div>
-        <div class="delete-post"><p>X</p></div>
       </div>
         `
     });
