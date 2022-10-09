@@ -26,6 +26,7 @@ async function singlePost(){
 const singlePostArr = await singlePost();
 
 function getPosts(post) {
+  const {author: author, body: body, id: id} = post;
     individualPost.innerHTML = "";
         //destructuring the objects inside the array for readability and ease of use
         individualPost.innerHTML = 
@@ -35,12 +36,12 @@ function getPosts(post) {
           <img src="img/logo.png" alt="user photo"/>
         </div>
         <div class="col-9 col-sm-10">
-          <h2 class="display-6">${post.author.name}</h2>
+        <h2 class="display-6"><a class="no_underline" href="profile.html?username=${author.name}">${author.name}</h2></a>
           <p class="post-text">
-            ${post.body}
+            ${body}
           </p>
         </div>`
-        if (username == post.author.name){
+        if (username == author.name){
           const contentInfo = document.querySelector(".content-info")
           contentInfo.innerHTML +=
           `<div class="row">
@@ -59,13 +60,10 @@ function getPosts(post) {
         deletePostBTN.addEventListener("click", ()=>{
           deletePost(post.id);
         });
-      } else{
-        console.log("not the original author")
-      }
+      } 
 }
 
 function editPostObject(id){
-
     const originalTextPost = individualPost.querySelector(".post-text")
     console.log(originalTextPost.innerHTML);
     const postEditField = document.querySelector(".post-edit")

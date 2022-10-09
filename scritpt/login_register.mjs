@@ -45,6 +45,7 @@ async function loginFunc(e) {
     }
 }
 
+
 async function registerFunc(e) {
     e.preventDefault();
     const registerObject = {

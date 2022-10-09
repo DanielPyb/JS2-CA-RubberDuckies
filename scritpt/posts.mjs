@@ -16,7 +16,7 @@ export async function getAllPosts(){
 }
   const response = await fetch(`${baseURL}social/posts?_author=true`, options)
   const data = await response.json();
-  getPosts(data);
+  getPosts(data, createdPosts);
   return data;
 }
 // putting the post data away for the search
@@ -43,12 +43,17 @@ async function createPost(e) {
 }
 
 
-function getPosts(arr) {
-    createdPosts.innerHTML = "";
+/**
+ * Display a chosen array inside of a chosen container
+ * @param {array} arr 
+ * @param {HTMLContainer} container 
+ */
+export function getPosts(arr, container) {
+    container.innerHTML = "";
     arr.forEach(post => {
         //destructuring the objects inside the array for readability and ease of use
         const {author: author, body: body, id: id} = post;
-        createdPosts.innerHTML += 
+        container.innerHTML += 
         `
         <div class="row pt-3 mt-4 border border-1 shadow rounded-top">
         <div class="col-3 col-sm-2">
