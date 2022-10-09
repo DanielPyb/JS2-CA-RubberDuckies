@@ -67,4 +67,6 @@ async function registerFunc(e) {
     }
 }
 
-console.log(loginEmail);
+function logOut() {
+    localStorage.removeItem("accessToken", "username");
+}

@@ -1,4 +1,5 @@
 import { baseURL } from "./baseurl.mjs";
+import { deletePost } from "./apiCalls.mjs";
 
 console.log("hello")
 
@@ -43,12 +44,6 @@ async function createPost(e) {
 }
 
 
-
-
-function deletePost() {
-
-}
-
 function getPosts(arr) {
     createdPosts.innerHTML = "";
     arr.forEach(post => {
@@ -66,7 +61,6 @@ function getPosts(arr) {
             ${body}
           </p></a>
         </div>
-        <div class="delete-post"><p>X</p></div>
       </div>
         `
     });

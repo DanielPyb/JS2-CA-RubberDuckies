@@ -1,4 +1,5 @@
 import { baseURL } from "./baseurl.mjs";
+import { deletePost, editPost } from "./apiCalls.mjs";
 
 const parameterString = window.location.search;
 const searchParams = new URLSearchParams(parameterString);
@@ -34,13 +35,46 @@ function getPosts(post) {
         </div>
         <div class="col-9 col-sm-10">
           <h2 class="display-6">${post.author.name}</h2>
-          <p>
+          <p class="post-text">
             ${post.body}
           </p>
         </div>
-        <div class="delete-post"><p>X</p></div>
+        <div class="row">
+        <div class="delete-post col-3"><p>X</p></div>
+        <div class="edit-post col-3"><p>Edit</p></div>
+        </div>
       </div>
+      <div class="post-edit" style="display: none;">
+      <textarea></textarea>
+    </div>
         `
+        const editPostBTN = individualPost.querySelector(".edit-post");
+        editPostBTN.addEventListener("click", ()=>{
+          editPost(post.id);
+        });
+        const deletePostBTN = individualPost.querySelector(".delete-post");
+        deletePostBTN.addEventListener("click", ()=>{
+          deletePost(post.id);
+        });
 }
+
+export function editPostObject(){
+    const originalTextPost = individualPost.querySelector(".post-text")
+    const postEditField = document.querySelector(".post-edit")
+    postEditField.innerHTML = "";
+    postEditField.innerHTML =`<textarea id="new-text">${originalTextPost}</textarea>
+                              <button>confirm</button>`
+    const confirmBTN = postEditField.querySelector("button");
+    confirmBTN.addEventListener("click", confirmChange);
+}
+
+function confirmChange(){
+      const newTextField = postEditField.querySelector("#new-text")
+      const newText = newTextField.value;
+      console.log(newText);
+}
+
+
 console.log(singlePostArr);
 await getPosts(singlePostArr)
+
