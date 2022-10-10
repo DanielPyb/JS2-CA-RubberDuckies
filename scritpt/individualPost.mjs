@@ -17,10 +17,14 @@ async function singlePost(){
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`
         }
     }
+    try{
       const response = await fetch(`${baseURL}social/posts/${currentID}?_author=true`, options)
       const data = await response.json();
       getPosts(data);
       return data;
+    } catch(error){
+      console.log(error)
+    }
     }
 
 const singlePostArr = await singlePost();

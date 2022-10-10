@@ -5,7 +5,6 @@ console.log("hello")
 const postText = document.getElementById("post-text");
 const postBTN = document.getElementById("post-btn");
 const createdPosts = document.querySelector(".created-posts");
-const deletePostBTN = document.getElementsByClassName("delete-post")
 
 export async function getAllPosts(){
   const options = {
@@ -14,10 +13,14 @@ export async function getAllPosts(){
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`
     }
 }
+try{
   const response = await fetch(`${baseURL}social/posts?_author=true`, options)
   const data = await response.json();
   getPosts(data, createdPosts);
   return data;
+  }catch(error){
+    console.log(error)
+  }
 }
 // putting the post data away for the search
 const everyPost = await getAllPosts();
@@ -37,9 +40,13 @@ async function createPost(e) {
     },
     body: JSON.stringify(newPost),
   }
+  try{
     const response = await fetch(`${baseURL}social/posts`, options)
     const result = await response.json();
     postText.value = "";
+  } catch(error){
+    console.log(error)
+  }
 }
 
 

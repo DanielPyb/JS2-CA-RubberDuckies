@@ -15,9 +15,14 @@ export async function editPost(id, textValue) {
     },
     body: JSON.stringify(editObject),
   };
+  try{
   const response = await fetch(`${baseURL}social/posts/${id}`, options);
   const data = await response.json();
   return data;
+  }
+  catch(error){
+    console.log(error);
+  }
 }
 
 export async function deletePost(id) {
@@ -28,7 +33,11 @@ export async function deletePost(id) {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
   };
+  try{
   const response = await fetch(`${baseURL}social/posts/${id}`, options);
   const data = await response.json();
-  return data;
+  return data;}
+  catch(error) {
+    console.log(error)
+  }
 }
