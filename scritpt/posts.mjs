@@ -56,26 +56,27 @@ async function createPost(e) {
  * @param {HTMLContainer} container 
  */
 export function getPosts(arr, container) {
-    container.innerHTML = "";
+    const containerTwo = container;
+    containerTwo.innerHTML = "";
     arr.forEach(post => {
         //destructuring the objects inside the array for readability and ease of use
-        const {author: author, body: body, id: id} = post;
+        const {author: author, body: body, id: id, media: media} = post;
         container.innerHTML += 
         `
-        <div class="row pt-3 mt-4 border border-1 shadow rounded-top">
-        <div class="col-3 col-sm-2">
-          <img src="img/logo.png" alt="user photo"/>
-        </div>
-        <div class="col-9 col-sm-10">
-          <h2 class="display-6"><a class="no_underline" href="profile.html?username=${author.name}">${author.name}</h2></a>
-          <p><a class="no_underline" href="post.html?id=${id}">
-            ${body}
-          </p></a>
-        </div>
-      </div>
-        `
-    });
+        <div class="row pt-3 mt-4 border border-1 shadow rounded-top single-post">
+          <div class="col-3 col-sm-2">
+            <img src="img/logo.png" alt="user photo"/>
+          </div>
+          <div class="col-9 col-sm-10">
+            <h2 class="display-6"><a class="no_underline" href="profile.html?username=${author.name}">${author.name}</h2></a>
+            <p><a class="no_underline" href="post.html?id=${id}">
+              ${body}
+            </p></a>
+          </div>
+          ${!media ? `</div>` : `<img src="${media}" style="width: 100%"></div> </div>`}
+          `
+  }
+);
 }
 
 getAllPosts();
-
