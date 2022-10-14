@@ -30,7 +30,7 @@ async function singlePost(){
 const singlePostArr = await singlePost();
 
 function getPosts(post) {
-  const {author: author, body: body, id: id} = post;
+  const {author: author, body: body, id: id, created: created, media: media} = post;
     individualPost.innerHTML = "";
         //destructuring the objects inside the array for readability and ease of use
         individualPost.innerHTML = 
@@ -41,9 +41,11 @@ function getPosts(post) {
         </div>
         <div class="col-9 col-sm-10">
         <h2 class="display-6"><a class="no_underline" href="profile.html?username=${author.name}">${author.name}</h2></a>
+          <span>${created.slice(0,10)}</span>
           <p class="post-text">
             ${body}
           </p>
+          ${!media ? `</div>` : `<img src="${media}" style="width: 100%"></div> </div>`}
         </div>`
         if (username == author.name){
           const contentInfo = document.querySelector(".content-info")
@@ -55,7 +57,8 @@ function getPosts(post) {
       </div>
       <div class="post-edit" style="display: none; "width: 100%">
       <textarea></textarea>
-      </div>`
+      </div>
+      `
         const editPostBTN = individualPost.querySelector(".edit-post");
         editPostBTN.addEventListener("click", ()=>{
           editPostObject(post.id);
@@ -69,7 +72,6 @@ function getPosts(post) {
 
 function editPostObject(id){
     const originalTextPost = individualPost.querySelector(".post-text")
-    console.log(originalTextPost.innerHTML);
     const postEditField = document.querySelector(".post-edit")
     postEditField.style = "display:block"
     postEditField.innerHTML = "";

@@ -18,6 +18,7 @@ export async function editPost(id, textValue) {
   try{
   const response = await fetch(`${baseURL}social/posts/${id}`, options);
   const data = await response.json();
+  location.reload();
   return data;
   }
   catch(error){
@@ -36,8 +37,34 @@ export async function deletePost(id) {
   try{
   const response = await fetch(`${baseURL}social/posts/${id}`, options);
   const data = await response.json();
-  return data;}
+  location.replace("profile.html")
+  return data;
+}
   catch(error) {
+    console.log(error)
+  }
+}
+
+export async function createPost(e) {
+  const postText = document.getElementById("post-text");
+  const newPost = {
+    title: "",
+    body: postText.value,
+};
+  const options = {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+    },
+    body: JSON.stringify(newPost),
+  }
+  try{
+    const response = await fetch(`${baseURL}social/posts`, options)
+    const result = await response.json();
+    postText.value = "";
+    location.reload();
+  } catch(error){
     console.log(error)
   }
 }
