@@ -88,4 +88,5 @@ logOutBtn.addEventListener("click", logOut);
 function logOut() {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("username");
+  location.reload();
 }

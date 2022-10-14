@@ -5,7 +5,8 @@ export function validateUsername(string) {
 }
 
 export function validateEmail(string){
-    const pattern = /[\w\-\.]+@(stud\.?noroff\.no)/;
+    const pattern = /[\w\-\.]+@(stud\.)?noroff\.no/;
+    
     const patternMatch = pattern.test(string.trim());
     return patternMatch; 
 }
