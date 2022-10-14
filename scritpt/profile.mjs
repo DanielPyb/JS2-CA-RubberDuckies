@@ -1,14 +1,12 @@
-import { createPost } from "./apiCalls.mjs";
-import { baseURL } from "./baseurl.mjs";
+import { lookAtProfile } from "./Api/apiCalls.mjs";
+import { createProfilePosts } from "./Render/profile-post-render.mjs";
 
-
-
-const createdPosts = document.querySelector(".created-posts");
-
+//getting the username identification from the window searchbar
 const parameterString = window.location.search;
 const searchParams = new URLSearchParams(parameterString);
 
-let username 
+//finding out if this is another users profile page or your own, depending on if there is a param or not
+let username = ""
 if(searchParams.get("username")){
   username = (searchParams.get("username"));
 } else{
@@ -17,44 +15,8 @@ if(searchParams.get("username")){
 
 document.getElementById("profile-name").innerText = username;
 
-async function lookAtProfile() {
-    const options = {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-        }
-    }
-    const response = await fetch(`${baseURL}social/profiles/${username}?_posts=true`, options)
-    const data = await response.json();
-    createProfilePosts(data);
-}
+// Getting the array and the container
+const profileInformation = await lookAtProfile(username);
+const createdPosts = document.querySelector(".created-posts");
 
-function createProfilePosts(data) {
-    createdPosts.innerHTML = "";
-    data.posts.forEach(post => {
-        //destructuring the objects inside the array for readability and ease of use
-        const {owner: owner, body: body, id: id, created: created, media: media } = post;
-        createdPosts.innerHTML +=
-        `
-        <div class="row pt-3 mt-4 border border-1 shadow rounded-top single-post">
-          <div class="col-3 col-sm-2">
-            <img src="img/logo.png" alt="user photo"/>
-          </div>
-          <div class="col-9 col-sm-10">
-            <h2 class="display-6"><a class="no_underline" href="profile.html?username=${owner}">${owner}</h2></a> 
-            <span>${created.slice(0,10)}</span>
-            <p><a class="no_underline" href="post.html?id=${id}">
-              ${body}
-            </p></a>
-          </div>
-          ${!media ? `</div>` : `<img src="${media}" style="width: 100%"></div> </div>`}
-          `
-    });
-};
-
-
-const postBTN = document.getElementById("post-btn")
-
-postBTN.addEventListener("click", createPost);
-
-lookAtProfile();
+createProfilePosts(profileInformation, createdPosts)

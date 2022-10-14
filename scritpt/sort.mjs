@@ -1,4 +1,5 @@
-import { getPosts, getAllPosts } from "./posts.mjs";
+import { getAllPosts } from "./Api/apiCalls.mjs";
+import { getPosts } from "./Render/post-render.mjs";
 
 
 const mainArr = await getAllPosts();
@@ -6,7 +7,6 @@ let subArr = [];
 const createdPosts = document.querySelector(".created-posts");
 
 const postSort = document.getElementById("sorting-by");
-console.log(postSort);
 
 postSort.addEventListener("change", () =>{
     postListSort(postSort.value);

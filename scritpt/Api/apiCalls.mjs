@@ -1,4 +1,4 @@
-import { baseURL } from "./baseurl.mjs";
+import { baseURL } from "../baseurl.mjs";
 
 export async function editPost(id, textValue) {
   console.log("working before edit post obj function");
@@ -67,4 +67,52 @@ export async function createPost(e) {
   } catch(error){
     console.log(error)
   }
+}
+
+/**
+ * 
+ * @returns Object carrying the the post information
+ */
+ export async function singlePost(id){
+  const options = {
+      method: "GET",
+      headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+      }
+  }
+  try{
+    const response = await fetch(`${baseURL}social/posts/${id}?_author=true`, options)
+    const data = await response.json();
+    return data;
+  } catch(error){
+    console.log(error)
+  }
+  }
+
+export async function getAllPosts(){
+    const options = {
+      method: "GET",
+      headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+      }
+  }
+  try{
+    const response = await fetch(`${baseURL}social/posts?_author=true`, options)
+    const data = await response.json();
+    return data;
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+export async function lookAtProfile(username) {
+    const options = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        }
+    }
+    const response = await fetch(`${baseURL}social/profiles/${username}?_posts=true`, options)
+    const data = await response.json();
+    return data;
 }
