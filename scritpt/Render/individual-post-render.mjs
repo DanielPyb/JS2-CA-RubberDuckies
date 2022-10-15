@@ -1,4 +1,4 @@
-import { editPost, deletePost } from "../apiCalls.mjs";
+import { editPost, deletePost } from "../Api/apiCalls.mjs";
 
 /**
  * Rendering the Individual Post that will be used so that the author/owner can delete/edit
@@ -38,11 +38,11 @@ export function getIndividualPosts(post, container) {
         `
           const editPostBTN = container.querySelector(".edit-post");
           editPostBTN.addEventListener("click", ()=>{
-            editPostObject(post.id);
+            editPostObject(id);
           });
           const deletePostBTN = container.querySelector(".delete-post");
           deletePostBTN.addEventListener("click", ()=>{
-            deletePost(post.id);
+            deletePost(id);
           });
         } 
   }

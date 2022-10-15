@@ -1,8 +1,11 @@
 import { baseURL } from "../baseurl.mjs";
 
+/**
+ * 
+ * @param {Number} id - Input the id to the post that you wish to change
+ * @param {String} textValue - What the new Body value should be for the edited post
+ */
 export async function editPost(id, textValue) {
-  console.log("working before edit post obj function");
-  console.log("working after edit post obj function");
   const editObject = {
     title: "",
     body: textValue,
@@ -22,10 +25,13 @@ export async function editPost(id, textValue) {
   return data;
   }
   catch(error){
-    console.log(error);
+    alert(error);
   }
 }
-
+/**
+ * 
+ * @param {Number} id - Input the Id that you wish to delete 
+ */
 export async function deletePost(id) {
   const options = {
     method: "DELETE",
@@ -45,6 +51,10 @@ export async function deletePost(id) {
   }
 }
 
+/**
+ * 
+ * Takes the value from the "post-text" id, and creates a new post with that info as it's body
+ */
 export async function createPost(e) {
   const postText = document.getElementById("post-text");
   const newPost = {
@@ -89,6 +99,10 @@ export async function createPost(e) {
   }
   }
 
+/**
+ * 
+ * @returns an array with posts from the API
+ */
 export async function getAllPosts(){
     const options = {
       method: "GET",
@@ -105,6 +119,11 @@ export async function getAllPosts(){
     }
   }
 
+  /**
+   * 
+   * @param {String} username - the username of the profile that you want to look at
+   * @returns data from the user, here we use it for the .post to display the posts from that user
+   */
 export async function lookAtProfile(username) {
     const options = {
         method: "GET",

@@ -36,9 +36,14 @@ export async function loginFunc(e) {
   try {
     const response = await fetch(`${baseURL}social/auth/login`, options);
     const result = await response.json();
+    console.log(result)
     localStorage.setItem("accessToken", result.accessToken);
     localStorage.setItem("username", result.name);
-    location.replace("profile.html")
+    if(response.status == 200){
+      location.replace("profile.html")
+    } else{
+      alert(result.message);
+    }
   } catch (error) {
     console.log("something went wrong");
   }
@@ -66,11 +71,13 @@ export async function registerFunc(e) {
     try {
       const response = await fetch(`${baseURL}social/auth/register`, options);
       const result = await response.json();
-      console.log(result);
+      if(response.status == 201){
+        alert("new profile created")
+      } else{
+        alert(result.message);
+      }
     } catch (error) {
       console.log(error);
     }
-  } else {
-    console.log("something went wrong");
   }
 }

@@ -1,4 +1,4 @@
-import { singlePost } from "./apiCalls.mjs";
+import { singlePost } from "./Api/apiCalls.mjs";
 import { getIndividualPosts } from "./Render/individual-post-render.mjs";
 
 
@@ -11,4 +11,4 @@ const currentID = (searchParams.get("id"));
 const individualPost = document.querySelector(".individual-post ")
 const singlePostObj = await singlePost(currentID);
 
-await getIndividualPosts(singlePostObj, individualPost)
+getIndividualPosts(singlePostObj, individualPost)
