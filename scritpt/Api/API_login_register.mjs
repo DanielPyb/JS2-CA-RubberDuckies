@@ -4,6 +4,7 @@ import {
   validatePassword,
 } from "../valdiation.mjs";
 import { baseURL } from "../baseurl.mjs";
+import { toggleRegister } from "../Handlers/toggle_login.mjs";
 
 // all the register values
 const registerUsername = document.getElementById("username-register");
@@ -73,6 +74,7 @@ export async function registerFunc(e) {
       const result = await response.json();
       if(response.status == 201){
         alert("new profile created")
+        toggleRegister();
       } else{
         alert(result.message);
       }

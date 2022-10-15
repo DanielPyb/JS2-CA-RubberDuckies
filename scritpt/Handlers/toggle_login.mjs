@@ -14,7 +14,7 @@ function toggleLogin() {
 }
 
 //Toggle the login and register form
-function toggleRegister() {
+export function toggleRegister() {
     registerForm.style.display = "none"
     loginForm.style.display = "block"
 }
