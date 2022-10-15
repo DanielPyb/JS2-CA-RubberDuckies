@@ -10770,3 +10770,11 @@ textarea.form-control-lg {
 .other-log-feature:hover{
   cursor: pointer;
 }
+
+.no_underline{
+  text-decoration: none;
+}
+
+.individual-post{
+  min-height: 100vh;
+}

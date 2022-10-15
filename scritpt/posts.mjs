@@ -1,18 +1,8 @@
-class PostObject {
-    constrctor(title, body){
-        this.title = title;
-        this.body = body;
-    }
-}
+import { getAllPosts } from "./Api/apiCalls.mjs";
+import { getPosts } from "./Render/post-render.mjs";
 
-function deletePost() {
+// Getting the array and the container
+const everyPost = await getAllPosts();
+const createdPosts = document.querySelector(".created-posts");
 
-}
-
-function createPost() {
-    
-}
-
-function editPost() {
-
-}
+getPosts(everyPost, createdPosts);
